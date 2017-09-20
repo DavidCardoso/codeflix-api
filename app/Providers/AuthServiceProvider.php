@@ -2,7 +2,7 @@
 
 namespace CodeFlix\Providers;
 
-use Illuminate\Support\Facades\Gate;
+use CodeFlix\Models\User;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
 class AuthServiceProvider extends ServiceProvider
@@ -25,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        // todo: variavel $user nao definida
+        \Gate::define('admin', function($user){
+            return $this->role == User::ROLE_ADMIN;
+        });
     }
 }
