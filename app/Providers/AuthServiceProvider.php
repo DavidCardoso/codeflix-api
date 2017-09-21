@@ -25,9 +25,11 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        // todo: variavel $user nao definida
+        /**
+         * define abilities to be tested on authorizations
+         */
         \Gate::define('admin', function($user){
-            return $this->role == User::ROLE_ADMIN;
+            return $user->role == User::ROLE_ADMIN;
         });
     }
 }

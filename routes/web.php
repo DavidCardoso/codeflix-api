@@ -19,26 +19,28 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+/**
+ * Administrative Area Routes
+ */
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
     'namespace' => 'Admin\\'
     ], function() {
 
+    Route::get('/', function () {
+        return view('home');
+    });
+
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
 
     Route::group(['middleware' => 'can:admin'], function () {
 
+        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+
         Route::get('dashboard', function(){
             return 'area administrativa ok';
         });
-
-        // todo: logout nao funcionando
-        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
     });
-});
-
-Route::get('/force-login', function() {
-    Auth::LoginUsingId(1);
 });
