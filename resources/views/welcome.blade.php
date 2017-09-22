@@ -66,9 +66,11 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
+            @if (Route::has('admin.login'))
                 <div class="top-right links">
-                    @if (Auth::check())
+                    @if (Auth::guest())
+                        <a href="{{ route('admin.login') }}">Login</a>
+                    @else
                         <a href="{{ url('/home') }}">Home</a>
                     @endif
                 </div>

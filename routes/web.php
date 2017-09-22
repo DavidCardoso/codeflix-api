@@ -11,13 +11,32 @@
 |
 */
 
+/**
+ * Default Route
+ */
 Route::get('/', function () {
     return view('welcome');
 });
 
-Auth::routes();
-
+/**
+ * Home Route
+ */
 Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * Password Reset Routes
+ */
+Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')
+    ->name('password.request');
+
+Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')
+    ->name('password.email');
+
+Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')
+    ->name('password.reset');
+
+Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+
 
 /**
  * Administrative Area Routes
@@ -29,18 +48,21 @@ Route::group([
     ], function() {
 
     Route::get('/', function () {
-        return view('home');
+        return view('admin.dashboard');
     });
 
-    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
+    Route::get('login', 'Auth\LoginController@showLoginForm')
+        ->name('login');
+
     Route::post('login', 'Auth\LoginController@login');
 
     Route::group(['middleware' => 'can:admin'], function () {
 
-        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
+        Route::post('logout', 'Auth\LoginController@logout')
+            ->name('logout');
 
         Route::get('dashboard', function(){
-            return 'area administrativa ok';
+            return view('admin.dashboard');
         });
     });
 });
