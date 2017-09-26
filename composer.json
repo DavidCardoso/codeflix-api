@@ -11,6 +11,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-ide-helper": "^2.4",
+        "caouecs/laravel-lang": "~3.0",
         "doctrine/dbal": "^2.6",
         "fzaninotto/faker": "~1.4",
         "mockery/mockery": "0.9.*",

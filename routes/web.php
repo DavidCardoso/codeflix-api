@@ -47,22 +47,23 @@ Route::group([
     'namespace' => 'Admin\\'
     ], function() {
 
-    Route::get('/', function () {
-        return view('admin.dashboard');
-    });
-
-    Route::get('login', 'Auth\LoginController@showLoginForm')
-        ->name('login');
-
+    Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
 
+    // protected routes
     Route::group(['middleware' => 'can:admin'], function () {
 
         Route::post('logout', 'Auth\LoginController@logout')
             ->name('logout');
 
+        Route::get('/', function () {
+            return view('admin.dashboard');
+        });
+
         Route::get('dashboard', function(){
             return view('admin.dashboard');
         });
+
+        Route::resource('users', 'UsersController');
     });
 });
