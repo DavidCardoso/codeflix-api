@@ -21,7 +21,9 @@ Route::get('/', function () {
 /**
  * Home Route
  */
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home', function() {
+    return view('admin.dashboard');
+})->name('home');
 
 /**
  * Password Reset Routes
