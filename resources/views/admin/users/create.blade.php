@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Novo usuário | {{ config('app.name', 'Laravel') }}</title>
+@endsection
+
 @section('content')
     <?php $icon = Icon::create('floppy-disk');?>
 

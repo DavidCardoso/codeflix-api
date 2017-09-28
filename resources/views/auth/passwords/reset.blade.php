@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@section('title')
+    <title>Redefinir senha | {{ config('app.name', 'Laravel') }}</title>
+@endsection
+
 @section('content')
 <div class="container">
     <div class="row">

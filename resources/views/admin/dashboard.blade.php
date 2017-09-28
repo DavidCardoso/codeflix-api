@@ -1,5 +1,9 @@
 @extends('layouts.admin')
 
+@section('title')
+    <title>Admin Dashboard | {{ config('app.name', 'Laravel') }}</title>
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
