@@ -168,6 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class, // Twitter Bootstrap
+//        Kris\LaravelFormBuilder\Form::class, // Laravel Form Builder
 
         /*
          * Application Service Providers...
@@ -257,6 +258,11 @@ return [
         'Tabbable' => Bootstrapper\Facades\Tabbable::class,
         'Table' => Bootstrapper\Facades\Table::class,
         'Thumbnail' => Bootstrapper\Facades\Thumbnail::class,
+
+        /*
+         * Laravel Form Builder
+         */
+        'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
 
     ],
 
