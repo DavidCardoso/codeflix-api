@@ -168,7 +168,7 @@ return [
          */
         Laravel\Tinker\TinkerServiceProvider::class,
         Bootstrapper\BootstrapperL5ServiceProvider::class, // Twitter Bootstrap
-//        Kris\LaravelFormBuilder\Form::class, // Laravel Form Builder
+        Kris\LaravelFormBuilder\FormBuilderServiceProvider::class, // Laravel Form Builder
 
         /*
          * Application Service Providers...
