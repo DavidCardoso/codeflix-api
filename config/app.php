@@ -197,6 +197,9 @@ return [
 
     'aliases' => [
 
+        /**
+         * Defaults
+         */
         'App' => Illuminate\Support\Facades\App::class,
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
@@ -232,7 +235,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
         /*
-         * Twitter Bootstrap aliases
+         * Twitter Bootstrap (patricktalmadge/bootstrapper)
          */
         'Accordion' => Bootstrapper\Facades\Accordion::class,
         'Alert' => Bootstrapper\Facades\Alert::class,
@@ -260,7 +263,7 @@ return [
         'Thumbnail' => Bootstrapper\Facades\Thumbnail::class,
 
         /*
-         * Laravel Form Builder
+         * Laravel Form Builder (kristijanhusak/laravel-form-builder)
          */
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
 

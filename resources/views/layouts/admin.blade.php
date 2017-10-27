@@ -8,10 +8,14 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    {{-- Título da página --}}
     @yield('title')
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    {{-- Pilha com blocos de código inseridos a partir das views --}}
+    @stack('styles')
 </head>
 <body>
     <div id="app">
@@ -83,6 +87,14 @@
             </div>
         </nav>
 
+        {{-- Alertas via sessão: success, warning, danger --}}
+        @if(Session::has('success'))
+            <div class="container">
+                {!! Alert::success(Session::get('success'))->close() !!}
+            </div>
+        @endif
+
+        {{-- Bloco principal com conteúdo dinâmico da página --}}
         @yield('content')
     </div>
 

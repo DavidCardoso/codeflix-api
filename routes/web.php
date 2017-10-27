@@ -39,7 +39,6 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
-
 /**
  * Administrative Area Routes
  */

@@ -11,7 +11,7 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\CodeFlix\Models\User::class, 10)->create();
+        factory(\CodeFlix\Models\User::class, 30)->create();
 
     }
 }

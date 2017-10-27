@@ -7,24 +7,17 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Usuarios</div>
+            <h1>Listagem de Usuários</h1>
+        </div>
 
-                    <div class="panel-body">
-                        @if (session('status'))
-                            <div class="alert alert-success">
-                                {{ session('status') }}
-                            </div>
-                        @endif
+        <div class="row">
+            {{-- Pegando coleção de usuários e renderizando em uma tabela --}}
+            {!! Table::withContents($users->items())->striped() !!}
+        </div>
 
-                        {!! Table::withContents($users->items())->striped() !!}
-
-                        {!! $users->links() !!}
-
-                    </div>
-                </div>
-            </div>
+        <div class="row">
+            {{-- Navegação da paginação --}}
+            {!! $users->links() !!}
         </div>
     </div>
 @endsection

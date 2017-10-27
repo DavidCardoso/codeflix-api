@@ -5,22 +5,21 @@
 @endsection
 
 @section('content')
-    <?php $icon = Icon::create('floppy-disk');?>
+    {{-- Criando ícone via Bootstrapper --}}
+    <?php $icon = Icon::create('floppy-disk')." Salvar";?>
 
     <div class="container">
         <div class="row">
             <h3>Novo usuário</h3>
+        </div>
 
-            @if (session('status'))
-                <div class="alert alert-success">
-                    {{ session('status') }}
-                </div>
-            @endif
+        <div class="row">
 
+            {{-- Renderizando o formulário via FormBuilder --}}
             {!!
                 form($form->add('salvar', 'submit', [
-                    'attr' => ['class' => 'btn btn-success btn-block'],
-                    'label' => $icon
+                        'attr' => ['class' => 'btn btn-success btn-block'],
+                        'label' => $icon
                 ]))
              !!}
 
