@@ -10,7 +10,7 @@
 
     <div class="container">
         <div class="row">
-            <h3>Novo usuário</h3>
+            <h3>Editar usuário</h3>
         </div>
 
         <div class="row">

@@ -772,9 +772,9 @@ __webpack_require__(9);
 
 // Vue.component('example', require('./components/Example.vue'));
 
-var app = new Vue({
-  el: '#app'
-});
+// const app = new Vue({
+//     el: '#app'
+// });
 
 /***/ }),
 /* 9 */

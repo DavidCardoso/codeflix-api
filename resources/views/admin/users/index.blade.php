@@ -8,7 +8,7 @@
     <div class="container">
 
         <div class="row">
-            <h1>Listagem de Usuários</h1>
+            <h3>Listagem de Usuários</h3>
         </div>
 
         <div class="row">
@@ -22,8 +22,11 @@
                     ->striped()
                     ->callback('Opções', function($field, $user){
                         $linkEdit = route('admin.users.edit', ['user' => $user->id]);
-                        return Button::link(Icon::create('pencil'))->asLinkTo($linkEdit);
+                        $linkShow = route('admin.users.show', ['user' => $user->id]);
+                        return Button::link(Icon::create('pencil'))->asLinkTo($linkEdit).'|'.
+                            Button::link(Icon::create('remove'))->asLinkTo($linkShow);
                     })
+
             !!}
         </div>
 
