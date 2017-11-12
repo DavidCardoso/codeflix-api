@@ -167,8 +167,9 @@ return [
          * Package Service Providers...
          */
         Laravel\Tinker\TinkerServiceProvider::class,
-        Bootstrapper\BootstrapperL5ServiceProvider::class, // Twitter Bootstrap
+        Bootstrapper\BootstrapperL5ServiceProvider::class, // L5 Twitter Bootstrapper
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class, // Laravel Form Builder
+        Prettus\Repository\Providers\RepositoryServiceProvider::class, // L5 Repository
 
         /*
          * Application Service Providers...
@@ -178,9 +179,6 @@ return [
         // CodeFlix\Providers\BroadcastServiceProvider::class,
         CodeFlix\Providers\EventServiceProvider::class,
         CodeFlix\Providers\RouteServiceProvider::class,
-
-
-
 
     ],
 
