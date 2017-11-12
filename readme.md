@@ -28,21 +28,29 @@
 - Route::resource('users', 'UsersController');
 - Routes Model Binding => route argument equal to the one from the action
 
-## CRUD User
-- php artisan make:controller Admin\UsersController --resource --model=CodeFlix\Models\User
-- php artisan make:form Forms\UserForm --fields="name:text, email:email"
-
 ## NavBar
 - $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
 - $menusLeft = Navigation::links($arrayLinksLeft);
 - $menusRight = Navigation::links($arrayLinksRight)->right();
 - $formLogout = FormBuilder::plain([]);
 
+## CRUD User
+- php artisan make:controller Admin\UsersController --resource --model=CodeFlix\Models\User
+- php artisan make:form Forms\UserForm --fields="name:text, email:email"
+
 ## Design Pattern: Repository (layer between Model and the Data Source)
 - prettus/l5-repository + service provider
 - php artisan vendor:publish --provider="Prettus\Repository\Providers\RepositoryServiceProvider"
 
-## CRUD Category using L5-Repository
+## Refactoring CRUD User using L5-Repository
+- rename User.php to User_old.php
+- php artisan make:repository User
+- delete new User.php and rename again User_old.php to User.php
+- delete new migration of User model
+- In register() method on RepositoryServiceProvider.php: 
+	- $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
+
+## CRUD Category using L5-Repository with full options
 - php artisan make:entity Category
 	- Presenter: no
 	- Validator: no
@@ -57,6 +65,9 @@
 		- app/Providers/RepositoryServiceProvider.php
 		- app/Repositories/
 		- database/migrations/2017_11_12_204552_create_categories_table.php
+
+## CRUD Category using L5-Repository with minimal options
+- php artisan make:repository Category
 
 ## CRUD Serie
 - php artisan make:repository Serie

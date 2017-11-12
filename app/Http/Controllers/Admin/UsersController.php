@@ -4,6 +4,7 @@ namespace CodeFlix\Http\Controllers\Admin;
 
 use CodeFlix\Forms\UserForm;
 use CodeFlix\Models\User;
+use CodeFlix\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
 use Kris\LaravelFormBuilder\Form;
@@ -11,13 +12,22 @@ use Kris\LaravelFormBuilder\Form;
 class UsersController extends Controller
 {
     /**
+     * UsersController constructor.
+     * @param UserRepository $repository
+     */
+    public function __construct(UserRepository $repository)
+    {
+        $this->repository = $repository;
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $users = User::paginate(15);
+        $users = $this->repository->paginate();
         return view('admin.users.index', compact('users'));
     }
 
@@ -47,6 +57,7 @@ class UsersController extends Controller
         /** @var Form $form */
         $form = \FormBuilder::create(UserForm::class);
 
+        // validating request
         if(!$form->isValid()) {
             return redirect()
                 ->back()
@@ -54,14 +65,12 @@ class UsersController extends Controller
                 ->withInput();
         }
 
-        // criando novo registro no DB
+        // creating new register
         $data = $form->getFieldValues();
-        $data['role'] = User::ROLE_ADMIN;
-        $data['password'] = User::generatePassword();
-        User::create($data);
+        $this->repository->create($data);
 
-        // retorno de mensagem via sessão
-        \Session::flash('success', 'Usuário criado com sucesso!');
+        // returning message using Session
+        \Session::flash('success', 'Usuário <b>criado</b> com sucesso!');
 
         return redirect()->route('admin.users.index');
     }
@@ -99,16 +108,17 @@ class UsersController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \CodeFlix\Models\User  $user
+     * @param  integer  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
         /** @var Form $form */
         $form = \FormBuilder::create(UserForm::class, [
-            'data' => ['id' => $user->id]
+            'data' => ['id' => $id]
         ]);
 
+        // validating request
         if(!$form->isValid()) {
             return redirect()
                 ->back()
@@ -116,13 +126,13 @@ class UsersController extends Controller
                 ->withInput();
         }
 
-        // alterando registro no DB
+        // updating register
         $data = array_except($form->getFieldValues(), ['password', 'role']);
-        $user->fill($data);
-        $user->save();
+        $this->repository->update($data, $id);
 
-        // retorno de mensagem via sessão
-        \Session::flash('success', 'Usuário alterado com sucesso!');
+        // returning message using Session
+        // \Session::flash('success', 'Usuário alterado com sucesso!');
+        $request->session()->flash('success', 'Usuário <b>alterado</b> com sucesso!');
 
         return redirect()->route('admin.users.index');
     }
@@ -130,15 +140,15 @@ class UsersController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \CodeFlix\Models\User  $user
+     * @param  integer $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        $user->delete();
+        $this->repository->delete($id);
 
-        // retorno de mensagem via sessão
-        \Session::flash('success', 'Usuário excluído com sucesso!');
+        // returning message using Session
+        \Session::flash('success', 'Usuário <b>excluído</b> com sucesso!');
 
         return redirect()->route('admin.users.index');
     }
