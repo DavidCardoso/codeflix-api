@@ -139,7 +139,7 @@ class UsersController extends Controller
 
         // retorno de mensagem via sessão
         \Session::flash('success', 'Usuário excluído com sucesso!');
-        
+
         return redirect()->route('admin.users.index');
     }
 }

@@ -8,93 +8,66 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    {{-- Título da página --}}
+    {{-- Title of the page --}}
     @yield('title')
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    {{-- Pilha com blocos de código inseridos a partir das views --}}
+     {{-- Stack of code blocks inserted from the Views --}}
     @stack('styles')
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-default navbar-static-top navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
+        {{-- Configuring NavBar --}}
+        <?php
+            $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
+            if(Auth::check()){
+                $arrayLinksLeft = [
+                    ['link' => route('admin.users.index'), 'title' => 'Usuário'],
+                ];
+                $arrayLinksRight = [
+                    [
+                        Auth::user()->name,
+                        [
+                            [
+                                'link' => route('admin.logout'),
+                                'title' => 'Logout',
+                                'linkAttributes' => [
+                                    'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
+                                ]
+                            ],
+                        ]
+                    ],
+                ];
+                $menusLeft = Navigation::links($arrayLinksLeft);
+                $menusRight = Navigation::links($arrayLinksRight)->right();
+                $navbar->withContent($menusLeft)->withContent($menusRight);
+            }
+        ?>
+        {{-- Invoking NavBar --}}
+        {!! $navbar !!}
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        {{-- Configuring Form Logout --}}
+        <?php
+            $formLogout = FormBuilder::plain([
+                'id' => 'form-logout',
+                'route' => ['admin.logout'], // array because it can use arguments too
+                'method' => 'POST',
+                'style' => 'display:none'
+            ]);
+        ?>
+        {{-- Invoking Form Logout --}}
+        {!! form($formLogout) !!}
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @if (Auth::guest())
-                            <li><a href="{{ route('admin.login') }}">Login</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    Cadastros <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('admin.users.index') }}">
-                                            Usuarios
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu" role="menu">
-                                    <li>
-                                        <a href="{{ route('admin.logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('admin.logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        {{-- Alertas via sessão: success, warning, danger --}}
+        {{-- Alerts by Session Flash Message (success, warning, danger, info, primary, default) --}}
         @if(Session::has('success'))
             <div class="container">
                 {!! Alert::success(Session::get('success'))->close() !!}
             </div>
         @endif
 
-        {{-- Bloco principal com conteúdo dinâmico da página --}}
+        {{-- Main block code of the page --}}
         @yield('content')
     </div>
 
