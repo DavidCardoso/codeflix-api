@@ -52,7 +52,7 @@ Route::group([
     Route::post('login', 'Auth\LoginController@login');
 
     // protected routes
-    Route::group(['middleware' => 'can:admin'], function () {
+    Route::group(['middleware' => ['isVerified', 'can:admin']], function () {
 
         Route::post('logout', 'Auth\LoginController@logout')
             ->name('logout');

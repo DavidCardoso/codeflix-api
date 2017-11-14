@@ -11,7 +11,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        factory(\CodeFlix\Models\User::class, 30)->create();
-
+        factory(\CodeFlix\Models\User::class, 30)
+//            todo: adicionar tratamento para states no model user
+//            ->states('admin')
+            ->create()
+            ->each(function ($user){
+                $user->verified = true;
+                $user->save();
+            });
     }
 }

@@ -170,6 +170,7 @@ return [
         Bootstrapper\BootstrapperL5ServiceProvider::class, // L5 Twitter Bootstrapper
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class, // Laravel Form Builder
         Prettus\Repository\Providers\RepositoryServiceProvider::class, // L5 Repository
+        Jrean\UserVerification\UserVerificationServiceProvider::class, // Laravel User Verification
 
         /*
          * Application Service Providers...
@@ -179,7 +180,7 @@ return [
         // CodeFlix\Providers\BroadcastServiceProvider::class,
         CodeFlix\Providers\EventServiceProvider::class,
         CodeFlix\Providers\RouteServiceProvider::class,
-        CodeFlix\Providers\RepositoryServiceProvider::class,
+        CodeFlix\Providers\RepositoryServiceProvider::class, // L5 Repository
 
     ],
 
@@ -266,6 +267,10 @@ return [
          */
         'FormBuilder' => Kris\LaravelFormBuilder\Facades\FormBuilder::class,
 
+        /*
+         * Laravel User Verification (jrean/laravel-user-verification)
+         */
+        'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
     ],
 
 ];

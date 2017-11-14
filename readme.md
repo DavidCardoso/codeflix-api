@@ -21,8 +21,8 @@
 - mailtrap.io => SMTP faker
 
 ## View
-- patricktalmadge/bootstrapper + service provider + facade
-- kris/laravel-form-builder + service provider + facade
+- patricktalmadge/bootstrapper:5.10.* + service provider + facade
+- kris/laravel-form-builder:1.11 + service provider + facade
 
 ## Routes
 - Route::resource('users', 'UsersController');
@@ -39,16 +39,26 @@
 - php artisan make:form Forms\UserForm --fields="name:text, email:email"
 
 ## Design Pattern: Repository (layer between Model and the Data Source)
-- prettus/l5-repository + service provider
+- prettus/l5-repository:2.6.27 + service provider
 - php artisan vendor:publish --provider="Prettus\Repository\Providers\RepositoryServiceProvider"
 
 ## Refactoring CRUD User using L5-Repository
-- rename User.php to User_old.php
+- rename _User.php_ to _User_old.php_
 - php artisan make:repository User
-- delete new User.php and rename again User_old.php to User.php
+- delete new _User.php_ and rename again _User_old.php_ to _User.php_
 - delete new migration of User model
-- In register() method on RepositoryServiceProvider.php: 
+- In register() method on _RepositoryServiceProvider.php_: 
 	- $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
+
+## User Verification
+- jrean/laravel-user-verification:4.1.2 + service provider + facade
+- php artisan vendor:publish --provider="Jrean\UserVerification\UserVerificationServiceProvider" --tag=migrations
+- edit namespace of the user model on the new migration
+- php artisan vendor:publish --provider="Jrean\UserVerification\UserVerificationServiceProvider" --tag=config
+- php artisan migrate
+- adjust user admin data migration to be verified by default
+- add route middleware **IsVerified::class** on _app\Http\Kernel.php_
+- add middleware **isVerified** on admin group routes
 
 ## CRUD Category using L5-Repository with full options
 - php artisan make:entity Category
