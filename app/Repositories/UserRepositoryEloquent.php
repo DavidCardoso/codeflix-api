@@ -2,11 +2,10 @@
 
 namespace CodeFlix\Repositories;
 
+use Jrean\UserVerification\Facades\UserVerification;
 use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
-use CodeFlix\Repositories\UserRepository;
 use CodeFlix\Models\User;
-use CodeFlix\Validators\UserValidator;
 
 /**
  * Class UserRepositoryEloquent
@@ -17,12 +16,18 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     /**
      * @param array $attributes
      * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     * @throws \Jrean\UserVerification\Exceptions\ModelNotCompliantException
      */
     public function create(array $attributes)
     {
         $attributes['role'] = User::ROLE_ADMIN;
         $attributes['password'] = User::generatePassword();
-        return parent::create($attributes);
+        $model = parent::create($attributes);
+        UserVerification::generate($model);
+        UserVerification::send($model, '['.config('app.name').'] Verificação de e-mail');
+
+        return $model;
     }
 
     /**

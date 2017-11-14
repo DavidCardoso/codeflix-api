@@ -59,6 +59,11 @@
 - adjust user admin data migration to be verified by default
 - add route middleware **IsVerified::class** on _app\Http\Kernel.php_
 - add middleware **isVerified** on admin group routes
+- php artisan vendor:publish --provider="Jrean\UserVerification\UserVerificationServiceProvider" --tag=views
+- php artisan make:controller EmailVerificationController
+- add EmailVerification routes on _routes/web.php_
+- edit EmailVerification views
+- create _resources/lang/<your-lang>/user-verification.php_
 
 ## CRUD Category using L5-Repository with full options
 - php artisan make:entity Category

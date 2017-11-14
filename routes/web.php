@@ -40,6 +40,15 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /**
+ * Email verification routes
+ */
+Route::get('email-verification/error', 'EmailVerificationController@getVerificationError')
+    ->name('email-verification.error');
+
+Route::get('email-verification/check/{token}', 'EmailVerificationController@getVerification')
+    ->name('email-verification.check');
+
+/**
  * Administrative Area Routes
  */
 Route::group([

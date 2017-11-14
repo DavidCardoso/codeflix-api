@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 /**
  * Class User
+ * @package CodeFlix\Models
  */
 class User extends Authenticatable implements TableInterface
 {
@@ -34,7 +35,11 @@ class User extends Authenticatable implements TableInterface
         'password', 'remember_token',
     ];
 
-    public static function generatePassword($password = null) {
+    /**
+     * @param string $password
+     * @return string
+     */
+    public static function generatePassword($password = '') {
         return !$password ? bcrypt(str_random(8)) : bcrypt($password);
     }
 
@@ -64,8 +69,9 @@ class User extends Authenticatable implements TableInterface
                 return $this->name;
             case 'E-mail':
                 return $this->email;
+            default:
+                return '';
         }
     }
-
 
 }
