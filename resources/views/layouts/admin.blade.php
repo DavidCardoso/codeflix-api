@@ -14,51 +14,17 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-     {{-- Stack of code blocks inserted from the Views --}}
+    {{-- Stack of code blocks inserted from the Views --}}
     @stack('styles')
 </head>
 <body>
     <div id="app">
-        {{-- Configuring NavBar --}}
-        <?php
-            $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inverse();
-            if(Auth::check()){
-                $arrayLinksLeft = [
-                    ['link' => route('admin.users.index'), 'title' => 'Usuário'],
-                ];
-                $arrayLinksRight = [
-                    [
-                        Auth::user()->name,
-                        [
-                            [
-                                'link' => route('admin.logout'),
-                                'title' => 'Logout',
-                                'linkAttributes' => [
-                                    'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
-                                ]
-                            ],
-                        ]
-                    ],
-                ];
-                $menusLeft = Navigation::links($arrayLinksLeft);
-                $menusRight = Navigation::links($arrayLinksRight)->right();
-                $navbar->withContent($menusLeft)->withContent($menusRight);
-            }
-        ?>
-        {{-- Invoking NavBar --}}
-        {!! $navbar !!}
 
-        {{-- Configuring Form Logout --}}
-        <?php
-            $formLogout = FormBuilder::plain([
-                'id' => 'form-logout',
-                'route' => ['admin.logout'], // array because it can use arguments too
-                'method' => 'POST',
-                'style' => 'display:none'
-            ]);
-        ?>
-        {{-- Invoking Form Logout --}}
-        {!! form($formLogout) !!}
+        {{-- NavBar --}}
+        @include('shared.navbar')
+
+        {{-- Connection status --}}
+        @include('shared.connection_status')
 
         {{-- Alerts by Session Flash Message (success, warning, danger, info, primary, default) --}}
         @if(Session::has('success'))
@@ -68,10 +34,22 @@
         @endif
 
         {{-- Main block code of the page --}}
-        @yield('content')
+        <div class="container">
+            @yield('content')
+        </div>
     </div>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+
+    <script>
+        // checking connection status
+        setInterval(function () {
+            document.getElementById("statusConnection").style.display = navigator.onLine ? 'none' : '';
+        }, 3000);
+    </script>
+
+    {{-- Stack of code blocks inserted from the Views --}}
+    @stack('scripts')
 </body>
 </html>
