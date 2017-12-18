@@ -4,6 +4,7 @@ $navbar = Navbar::withBrand(config('app.name'), route('admin.dashboard'))->inver
 if(Auth::check()){
     $arrayLinksLeft = [
         ['link' => route('admin.users.index'), 'title' => 'Usuário'],
+        ['link' => route('admin.categories.index'), 'title' => 'Categoria'],
     ];
     $arrayLinksRight = [
         [

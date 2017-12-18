@@ -37,8 +37,8 @@
 - $formLogout = FormBuilder::plain([]);
 
 ## CRUD User
-- php artisan make:controller Admin\UsersController --resource --model=CodeFlix\Models\User
-- php artisan make:form Forms\UserForm --fields="name:text, email:email"
+- php artisan make:controller "Admin\UsersController" --resource --model="CodeFlix\Models\User"
+- php artisan make:form "Forms\UserForm" --fields="name:text, email:email"
 
 ## Design Pattern: Repository (layer between Model and the Data Source)
 - prettus/l5-repository:2.6.27 + service provider
@@ -88,9 +88,9 @@
 
 ## CRUD Serie
 - php artisan make:repository Serie
-- php artisan make:controller SeriesController --resource --model=CodeFlix\Models\Serie
-- php artisan make:seeder Admin\SeriesTableSeeder
-- php artisan make:form Forms\SerieForm --fields"title:text, description:textarea"
+- php artisan make:controller "Admin\SeriesController" --resource --model="CodeFlix\Models\Serie"
+- php artisan make:seeder "Admin\SeriesTableSeeder"
+- php artisan make:form "Forms\SerieForm" --fields="title:text, description:textarea"
 
 
 

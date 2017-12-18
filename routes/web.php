@@ -57,23 +57,27 @@ Route::group([
     'namespace' => 'Admin\\'
     ], function() {
 
+    // login routes
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
 
     // protected routes
     Route::group(['middleware' => ['isVerified', 'can:admin']], function () {
 
+        // logout routes
         Route::post('logout', 'Auth\LoginController@logout')
             ->name('logout');
 
+        // dashboard admin routes
         Route::get('/', function () {
             return view('admin.dashboard');
         });
-
         Route::get('dashboard', function(){
             return view('admin.dashboard');
         })->name('dashboard');
 
+        // All default routes for REST HTTP standard
         Route::resource('users', 'UsersController');
+        Route::resource('categories', 'CategoriesController');
     });
 });
