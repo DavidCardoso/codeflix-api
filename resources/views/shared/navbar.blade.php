@@ -17,6 +17,10 @@ if(Auth::check()){
                         'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
                     ]
                 ],
+                [
+                    'link' => route('admin.user-settings.edit'),
+                    'title' => 'Meus dados'
+                ]
             ]
         ],
     ];

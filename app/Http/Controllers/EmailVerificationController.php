@@ -24,9 +24,10 @@ class EmailVerificationController extends Controller
     }
 
     /**
-     * loginUser action
+     * Do auto login
      */
-    protected function loginUser(){
+    protected function loginUser()
+    {
         $email = \Request::get('email');
         $user = $this->repository->findByField('email', $email)->first();
         \Auth::login($user);
@@ -40,7 +41,7 @@ class EmailVerificationController extends Controller
     public function redirectAfterVerification()
     {
         $this->loginUser();
-        return route('admin.dashboard');
+        return route('admin.user-settings.edit');
     }
 
 }

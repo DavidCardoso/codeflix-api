@@ -67,6 +67,27 @@
 - edit EmailVerification views
 - create _resources/lang/<your-lang>/user-verification.php_
 
+## User settings
+- php artisan make:controller "Admin\Auth\UserSettingsController" --resource
+	- implements edit and update actions
+- add routes on _routes\web.php_
+	- Route::get('users/settings', 'Auth\UserSettingsController@edit')->name('user-settings.edit');
+    - Route::put('users/settings', 'Auth\UserSettingsController@update')->name('user-settings.update');
+- refactor **redirectAfterVerification()** action of **EmailVerificationController** to redirect to route('admin.user-settings.edit')
+- php artisan make:form "Forms\UserSettingsForm" --fields="password:password, password_confirmation:password"
+- create _resources/views/admin/auth/setting.blade.php_
+- add new menu option on _resources/views/layouts/admin.blade.php_
+- files used
+	- new:   
+		- app/Http/Controllers/Admin/Auth/UserSettingsController.php
+		- app/Forms/UserSettingsForm.php
+		- resources/views/admin/auth/setting.blade.php
+	- modified:
+		- app/Http/Controllers/EmailVerificationController.php
+		- app/Repositories/UserRepositoryEloquent.php
+		- resources/views/shared/navbar.blade.php
+		- routes/web.php
+
 ## CRUD Category using L5-Repository with full options
 - php artisan make:entity Category
 	- Presenter: no

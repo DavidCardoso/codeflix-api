@@ -26,12 +26,8 @@
         {{-- Connection status --}}
         @include('shared.connection_status')
 
-        {{-- Alerts by Session Flash Message (success, warning, danger, info, primary, default) --}}
-        @if(Session::has('success'))
-            <div class="container">
-                {!! Alert::success(Session::get('success'))->close() !!}
-            </div>
-        @endif
+        {{-- Errors --}}
+        @include('shared.alerts')
 
         {{-- Main block code of the page --}}
         <div class="container">

@@ -26,7 +26,7 @@ Route::get('/home', function() {
 })->name('home');
 
 /**
- * Password Reset Routes
+ * User Password Reset Routes
  */
 Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')
     ->name('password.request');
@@ -40,7 +40,7 @@ Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm
 Route::post('password/reset', 'Auth\ResetPasswordController@reset');
 
 /**
- * Email verification routes
+ * User Email verification routes
  */
 Route::get('email-verification/error', 'EmailVerificationController@getVerificationError')
     ->name('email-verification.error');
@@ -55,29 +55,32 @@ Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
     'namespace' => 'Admin\\'
-    ], function() {
-
-    // login routes
+], function() {
+    // Login routes
     Route::get('login', 'Auth\LoginController@showLoginForm')->name('login');
     Route::post('login', 'Auth\LoginController@login');
 
-    // protected routes
+    // Protected routes
     Route::group(['middleware' => ['isVerified', 'can:admin']], function () {
 
-        // logout routes
-        Route::post('logout', 'Auth\LoginController@logout')
-            ->name('logout');
+        // Logout routes
+        Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
-        // dashboard admin routes
-        Route::get('/', function () {
-            return view('admin.dashboard');
-        });
+        // Dashboard admin routes
         Route::get('dashboard', function(){
             return view('admin.dashboard');
         })->name('dashboard');
 
+        // User settings routes
+        Route::get('users/settings', 'Auth\UserSettingsController@edit')
+            ->name('user-settings.edit');
+        Route::put('users/settings', 'Auth\UserSettingsController@update')
+            ->name('user-settings.update');
+
         // All default routes for REST HTTP standard
         Route::resource('users', 'UsersController');
         Route::resource('categories', 'CategoriesController');
+
+
     });
 });

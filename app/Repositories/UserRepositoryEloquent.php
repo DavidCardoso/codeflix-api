@@ -31,6 +31,23 @@ class UserRepositoryEloquent extends BaseRepository implements UserRepository
     }
 
     /**
+     * @param array $attributes
+     * @param $id
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function update(array $attributes, $id)
+    {
+        if (isset($attributes['password'])) {
+            $attributes['password'] = User::generatePassword($attributes['password']);
+        }
+
+        $model = parent::update($attributes, $id);
+        return $model;
+    }
+
+
+    /**
      * Specify Model class name
      *
      * @return string
