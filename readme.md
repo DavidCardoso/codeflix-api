@@ -21,6 +21,7 @@
 
 ## Email
 - mailtrap.io => SMTP faker
+- AWS SES => SMTP
 
 ## View
 - patricktalmadge/bootstrapper:5.10.* + service provider + facade
