@@ -111,7 +111,7 @@
 ## CRUD Serie
 - php artisan make:repository Serie
 - php artisan make:controller "Admin\SeriesController" --resource --model="CodeFlix\Models\Serie"
-- php artisan make:seeder "Admin\SeriesTableSeeder"
+- php artisan make:seeder "SeriesTableSeeder"
 - php artisan make:form "Forms\SerieForm" --fields="title:text, description:textarea"
 
 

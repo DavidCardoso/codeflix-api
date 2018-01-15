@@ -36,3 +36,12 @@ $factory->define(\CodeFlix\Models\Category::class, function (Faker\Generator $fa
         'name' => $faker->word,
     ];
 });
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(\CodeFlix\Models\Serie::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(6),
+        'thumb' => 'thumb.jpeg',
+    ];
+});

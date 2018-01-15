@@ -80,6 +80,7 @@ Route::group([
         // All default routes for REST HTTP standard
         Route::resource('users', 'UsersController');
         Route::resource('categories', 'CategoriesController');
+        Route::resource('series', 'SeriesController');
 
 
     });
