@@ -113,6 +113,34 @@
 - php artisan make:controller "Admin\SeriesController" --resource --model="CodeFlix\Models\Serie"
 - php artisan make:seeder "SeriesTableSeeder"
 - php artisan make:form "Forms\SerieForm" --fields="title:text, description:textarea"
+- php aritsan migrate:refresh --seed
+
+## CRUD Video
+- php artisan make:repository Video
+- php artisan make:controller "Admin\VideosController" --resource --model="CodeFlix\Models\Video"
+- php artisan make:seeder VideosTableSeeder
+- php artisan make:form "Forms\VideoForm" --fields="title:text, description:textarea, duration:number"
+- php artisan migrate:refresh --seed
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

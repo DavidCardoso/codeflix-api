@@ -41,7 +41,20 @@ $factory->define(\CodeFlix\Models\Category::class, function (Faker\Generator $fa
 $factory->define(\CodeFlix\Models\Serie::class, function (Faker\Generator $faker) {
     return [
         'title' => $faker->sentence(3),
-        'description' => $faker->sentence(6),
+        'description' => $faker->sentence(5),
         'thumb' => 'thumb.jpeg',
+    ];
+});
+
+/** @var \Illuminate\Database\Eloquent\Factory $factory */
+$factory->define(\CodeFlix\Models\Video::class, function (Faker\Generator $faker) {
+    return [
+        'title' => $faker->sentence(3),
+        'description' => $faker->sentence(5),
+        'duration' => mt_rand(1,30),
+        'file' => 'file.mp4',
+        'thumb' => 'thumb.jpeg',
+        'published' => mt_rand(0,1),
+        'completed' => 1
     ];
 });
