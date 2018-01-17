@@ -125,7 +125,12 @@
 - php artisan migrate
 - In _VideosTableSeeder_: $video->categories()->attach($categories->random(4)->pluck('id'));
 - php artisan migrate:refresh --seed
-- php artisan make:form "Forms\VideoForm" --fields="title:text, description:textarea, duration:number"
+- In _Videos.php_ model: update $fillable and implement TableInterface methods
+- In _web.php_ routes: add videos resources routes
+- php artisan make:form "Forms\VideoForm" --fields="title:text, description:textarea"
+- In _VideosController_: implement actions
+- In _resources/views/admin/videos_: create and implement views
+    - to manage videos using tabs, use blade component and slot
 
 
 

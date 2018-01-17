@@ -12,8 +12,10 @@
         </div>
 
         <div class="row">
+            {{-- Creating icon with Bootstrapper --}}
+            <?php $iconCreate = Icon::create('plus');?>
             {{-- Rendering button with Bootstrapper --}}
-            {!! Button::primary('Nova categoria')->asLinkTo(route('admin.categories.create')) !!}
+            {!! Button::primary($iconCreate.' Nova categoria')->asLinkTo(route('admin.categories.create')) !!}
         </div>
 
         <div class="row">
