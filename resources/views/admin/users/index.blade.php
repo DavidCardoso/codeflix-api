@@ -12,7 +12,10 @@
         </div>
 
         <div class="row">
-            {!! Button::primary('Novo usuário')->asLinkTo(route('admin.users.create')) !!}
+            {{-- Creating icon with Bootstrapper --}}
+            <?php $iconCreate = Icon::create('plus');?>
+            {{-- Rendering button with Bootstrapper --}}
+            {!! Button::primary($iconCreate.' Novo usuário')->asLinkTo(route('admin.users.create')) !!}
         </div>
 
         <div class="row">

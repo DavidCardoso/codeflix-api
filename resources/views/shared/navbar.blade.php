@@ -6,6 +6,7 @@ if(Auth::check()){
         ['link' => route('admin.users.index'), 'title' => 'Usuário'],
         ['link' => route('admin.categories.index'), 'title' => 'Categoria'],
         ['link' => route('admin.series.index'), 'title' => 'Séries'],
+        ['link' => route('admin.videos.index'), 'title' => 'Vídeos'],
     ];
     $arrayLinksRight = [
         [
@@ -15,7 +16,7 @@ if(Auth::check()){
                     'link' => route('admin.logout'),
                     'title' => 'Logout',
                     'linkAttributes' => [
-                        'onclick' => "event.preventDefault();document.getElementById(\"form-logout\").submit();"
+                        'onclick' => 'event.preventDefault();document.getElementById(\"form-logout\").submit();'
                     ]
                 ],
                 [
