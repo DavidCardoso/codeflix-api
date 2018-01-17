@@ -117,20 +117,23 @@
 
 ## CRUD Video
 - php artisan make:repository Video
-- php artisan make:controller "Admin\VideosController" --resource --model="CodeFlix\Models\Video"
-- php artisan make:seeder VideosTableSeeder
-- In _VideosTableSeeder_: $video->serie()->associate($serie);
-- php artisan migrate:refresh --seed
-- php artisan make:migration create_category_video_table --create=category_video
-- php artisan migrate
-- In _VideosTableSeeder_: $video->categories()->attach($categories->random(4)->pluck('id'));
-- php artisan migrate:refresh --seed
-- In _Videos.php_ model: update $fillable and implement TableInterface methods
-- In _web.php_ routes: add videos resources routes
 - php artisan make:form "Forms\VideoForm" --fields="title:text, description:textarea"
-- In _VideosController_: implement actions
+- php artisan make:controller "Admin\VideosController" --resource --model="CodeFlix\Models\Video"
+    - In _VideosController_: implement all actions
+    - In _web.php_ routes: add videos resources routes
+- php artisan make:seeder VideosTableSeeder
+    - In _VideosTableSeeder_: $video->serie()->associate($serie);
+    - php artisan migrate:refresh --seed
+- In _Videos.php_ model: set $fillable and implement TableInterface methods
+- php artisan make:migration create_category_video_table --create=category_video
+    - php artisan migrate
+    - In _VideosTableSeeder_: $video->categories()->attach($categories->random(4)->pluck('id'));
+    - php artisan migrate:refresh --seed
 - In _resources/views/admin/videos_: create and implement views
     - to manage videos using tabs, use blade component and slot
+- php artisan make:controller "Admin\VideoRelationsController" --resource --model="CodeFlix\Models\Video"
+    - In _VideoRelationsController_: implement create and store actions
+    - In _web.php_ routes: add videos relations routes
 
 
 
