@@ -106,7 +106,7 @@
 - php artisan make:controller "Admin\SeriesController" --resource --model="CodeFlix\Models\Serie"
 - php artisan make:seeder "SeriesTableSeeder"
 - php artisan make:form "Forms\SerieForm" --fields="title:text, description:textarea"
-- php aritsan migrate:refresh --seed
+- php artisan migrate:refresh --seed
 
 ## CRUD Video
 - php artisan make:repository Video
@@ -129,8 +129,9 @@
     - In _web.php_ routes: add videos relations routes
 - php artisan make:form "Forms\VideoRelationForm"
 - mkdir -p app/Media
-    - create trait VideoStorages.php
-    - create trait SeriePaths.php
+    - create trait _VideoStorages.php_
+    - create trait _SeriePaths.php_
+    - create trait _ThumbUploads.php_
 
 
 
