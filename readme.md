@@ -2,13 +2,6 @@
 	<img src="https://laravel.com/assets/img/components/logo-laravel.svg">
 </p>
 
-<p align="center">
-	<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-	<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-	<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-	<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
-</p>
-
 # Notes about standards used on this application
 
 ## Authentication
@@ -135,6 +128,9 @@
     - In _VideoRelationsController_: implement create and store actions
     - In _web.php_ routes: add videos relations routes
 - php artisan make:form "Forms\VideoRelationForm"
+- mkdir -p app/Media
+    - create trait VideoStorages.php
+    - create trait SeriePaths.php
 
 
 
