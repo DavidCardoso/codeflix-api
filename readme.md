@@ -134,7 +134,7 @@
 - php artisan make:controller "Admin\VideoRelationsController" --resource --model="CodeFlix\Models\Video"
     - In _VideoRelationsController_: implement create and store actions
     - In _web.php_ routes: add videos relations routes
-
+- php artisan make:form "Forms\VideoRelationForm"
 
 
 
