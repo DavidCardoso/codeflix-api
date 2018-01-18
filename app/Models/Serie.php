@@ -3,6 +3,7 @@
 namespace CodeFlix\Models;
 
 use Bootstrapper\Interfaces\TableInterface;
+use CodeFlix\Media\SeriePaths;
 use Illuminate\Database\Eloquent\Model;
 
 /**
@@ -24,6 +25,8 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Serie extends Model implements TableInterface
 {
+    use SeriePaths;
+
     protected $fillable = ['title', 'description'];
 
     public function videos(){
