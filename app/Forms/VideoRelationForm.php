@@ -15,7 +15,8 @@ class VideoRelationForm extends Form
                 'label' => 'Serie',
                 'class' => Serie::class,
                 'property' => 'title',
-                'empty_value' => 'Selecione uma serie...'
+                'empty_value' => 'Selecione uma serie...',
+                'rules' => 'nullable|exists:series,id'
             ])
             ->add('categories', 'entity', [
                 'label' => 'Categorias',
@@ -25,9 +26,10 @@ class VideoRelationForm extends Form
                 'multiple' => true,
                 'attr' => [
                     'name' => 'categories[]',
-                    'style' => 'height:300px',
+                    'style' => 'height:200px',
                     'title' => 'Segure a tecla CTRL para selecionar mais de uma opçao.'
-                ]
+                ],
+                'rules' => 'required|exists:categories,id'
             ]);
     }
 }
