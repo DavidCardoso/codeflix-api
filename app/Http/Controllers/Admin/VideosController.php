@@ -69,10 +69,10 @@ class VideosController extends Controller
         }
 
         $data = $form->getFieldValues();
-        $this->repository->create($data);
+        $video = $this->repository->create($data);
         $request->session()->flash('success', 'Vídeo <b>cadastrado</b> com sucesso!');
 
-        return redirect()->route('admin.videos.index');
+        return redirect()->route('admin.videos.edit',['video' => $video->id]);
     }
 
     /**

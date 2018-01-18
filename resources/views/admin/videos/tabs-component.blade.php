@@ -8,12 +8,12 @@ $tabs = [
         'link' => !isset($video) ? route('admin.videos.create') : route('admin.videos.edit', ['video' => $video->id])
     ],
     [
-        'title' => 'Série e categorias',
+        'title' => 'Vinculos',
         'link' => !isset($video) ? '#' : route('admin.videos.relations.create', ['video' => $video->id]),
         'disable' => !isset($video) ? true : false
     ],
     [
-        'title' => 'Vídeo e thumbnail',
+        'title' => 'Arquivos',
         'link' => '',
         'disable' => !isset($video) ? true : false
     ]
