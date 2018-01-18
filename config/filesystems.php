@@ -63,6 +63,11 @@ return [
             'bucket' => env('AWS_BUCKET'),
         ],
 
+        'videos_local' => [
+            'drive' => 'local',
+            'root' => storage_path('app/videos_test')
+        ]
+
     ],
 
 ];
