@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "acdda7ab693947d6d1a762c34ed4fc7a",
+    "content-hash": "15aaf0c16d7457e9529b033d6f6d0a4c",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -950,16 +950,16 @@
         },
         {
             "name": "patricktalmadge/bootstrapper",
-            "version": "5.10.2",
+            "version": "5.10.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/patricktalmadge/bootstrapper.git",
-                "reference": "d92e16891570613b374f2d382051409dde02663e"
+                "reference": "ad5c88922ac0d267bc03f7e06829922d5a67ad44"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/patricktalmadge/bootstrapper/zipball/d92e16891570613b374f2d382051409dde02663e",
-                "reference": "d92e16891570613b374f2d382051409dde02663e",
+                "url": "https://api.github.com/repos/patricktalmadge/bootstrapper/zipball/ad5c88922ac0d267bc03f7e06829922d5a67ad44",
+                "reference": "ad5c88922ac0d267bc03f7e06829922d5a67ad44",
                 "shasum": ""
             },
             "require": {
@@ -977,6 +977,13 @@
                 "squizlabs/php_codesniffer": "~2.3"
             },
             "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Bootstrapper\\BootstrapperL5ServiceProvider"
+                    ]
+                }
+            },
             "autoload": {
                 "psr-4": {
                     "Bootstrapper\\": "src\\Bootstrapper",
@@ -1006,7 +1013,7 @@
                 "bootstrap",
                 "laravel"
             ],
-            "time": "2017-06-14T21:52:31+00:00"
+            "time": "2018-01-15T14:29:54+00:00"
         },
         {
             "name": "prettus/l5-repository",
@@ -4453,7 +4460,7 @@
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
-        "php": ">=5.6.4"
+        "php": ">=7.1"
     },
     "platform-dev": []
 }

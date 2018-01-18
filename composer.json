@@ -5,7 +5,7 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": ">=5.6.4",
+        "php": ">=7.1",
         "jrean/laravel-user-verification": "4.1.2",
         "kris/laravel-form-builder": "1.11",
         "laravel/framework": "5.4.*",
