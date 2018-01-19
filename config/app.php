@@ -171,6 +171,7 @@ return [
         Kris\LaravelFormBuilder\FormBuilderServiceProvider::class, // Laravel Form Builder
         Prettus\Repository\Providers\RepositoryServiceProvider::class, // L5 Repository
         Jrean\UserVerification\UserVerificationServiceProvider::class, // Laravel User Verification
+        Folklore\Image\ImageServiceProvider::class, //Laravel Image
 
         /*
          * Application Service Providers...
@@ -250,7 +251,7 @@ return [
         'Helpers' => Bootstrapper\Facades\Helpers::class,
         'Icon' => Bootstrapper\Facades\Icon::class,
         'InputGroup' => Bootstrapper\Facades\InputGroup::class,
-        'Image' => Bootstrapper\Facades\Image::class,
+        'ImageTag' => Bootstrapper\Facades\Image::class,
         'Label' => Bootstrapper\Facades\Label::class,
         'MediaObject' => Bootstrapper\Facades\MediaObject::class,
         'Modal' => Bootstrapper\Facades\Modal::class,
@@ -271,6 +272,11 @@ return [
          * Laravel User Verification (jrean/laravel-user-verification)
          */
         'UserVerification' => Jrean\UserVerification\Facades\UserVerification::class,
+
+        /*
+         * Laravel Image (folklore/image)
+         */
+        'Image' => Folklore\Image\Facades\Image::class,
     ],
 
 ];

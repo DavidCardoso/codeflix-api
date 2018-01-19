@@ -5,6 +5,7 @@ namespace CodeFlix\Media;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\UploadedFile;
+use Imagine\Image\Box;
 
 trait ThumbUploads
 {
@@ -15,10 +16,13 @@ trait ThumbUploads
      */
     public function uploadThumb($id, UploadedFile $file): Model
     {
+        /** @var Model $model */
         $model = $this->find($id);
+        /** @var string|false $name */
         $name = $this->upload($model, $file);
         if ($name) {
             $model->thumb = $name;
+            $this->makeThumbSmall($model);
             $model->save();
         }
 
@@ -40,5 +44,19 @@ trait ThumbUploads
         $result = $storage->putFileAs($model->thumb_folder_storage, $file, $name);
 
         return $result ? $name : $result;
+    }
+
+    /**
+     * @param Model $model
+     */
+    protected function makeThumbSmall($model): void
+    {
+        /** @var FilesystemAdapter $storage */
+        $storage = $model->getStorage();
+        /** @var string $thumbFile */
+        $thumbFile = $model->thumb_path;
+        $format = \Image::format($thumbFile);
+        $thumbnailSmall = \Image::open($thumbFile)->thumbnail(new Box(64,64));
+        $storage->put($model->thumb_small_relative, $thumbnailSmall->get($format));
     }
 }

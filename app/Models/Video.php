@@ -12,6 +12,29 @@ use Prettus\Repository\Traits\TransformableTrait;
  *
  * @property-read \CodeFlix\Models\Serie $serie
  * @mixin \Eloquent
+ * @property int $id
+ * @property string $title
+ * @property string $description
+ * @property int|null $duration
+ * @property string|null $file
+ * @property string|null $thumb
+ * @property int $completed
+ * @property int $published
+ * @property int|null $serie_id
+ * @property \Carbon\Carbon|null $created_at
+ * @property \Carbon\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CodeFlix\Models\Category[] $categories
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereCompleted($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereDuration($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video wherePublished($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereSerieId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereThumb($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Video whereUpdatedAt($value)
  */
 class Video extends Model implements Transformable, TableInterface
 {
