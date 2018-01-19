@@ -42,7 +42,7 @@ $factory->define(\CodeFlix\Models\Serie::class, function (Faker\Generator $faker
     return [
         'title' => $faker->sentence(3),
         'description' => $faker->sentence(5),
-        'thumb' => 'thumb.jpeg',
+        'thumb' => 'thumb.png',
     ];
 });
 
@@ -52,8 +52,8 @@ $factory->define(\CodeFlix\Models\Video::class, function (Faker\Generator $faker
         'title' => $faker->sentence(3),
         'description' => $faker->sentence(5),
         'duration' => mt_rand(1,30),
-        'file' => 'file.mp4',
-        'thumb' => 'thumb.jpeg',
+        'file' => 'video.mov',
+        'thumb' => 'thumb.png',
         'published' => mt_rand(0,1),
         'completed' => 1
     ];

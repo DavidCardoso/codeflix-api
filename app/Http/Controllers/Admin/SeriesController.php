@@ -73,7 +73,7 @@ class SeriesController extends Controller
 
         // creating new register
         $data = $form->getFieldValues();
-        $data['thumb'] = 'thumb.jpeg';
+        $data['thumb'] = 'thumb.png';
         Model::unguard();
         $this->repository->create($data);
 

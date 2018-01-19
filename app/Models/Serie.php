@@ -22,6 +22,12 @@ use Illuminate\Database\Eloquent\Model;
  * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Serie whereTitle($value)
  * @method static \Illuminate\Database\Eloquent\Builder|\CodeFlix\Models\Serie whereUpdatedAt($value)
  * @mixin \Eloquent
+ * @property-read string $thumb_folder_storage
+ * @property-read mixed $thumb_path
+ * @property-read string $thumb_relative
+ * @property-read mixed $thumb_small_path
+ * @property-read string $thumb_small_relative
+ * @property-read \Illuminate\Database\Eloquent\Collection|\CodeFlix\Models\Video[] $videos
  */
 class Serie extends Model implements TableInterface
 {

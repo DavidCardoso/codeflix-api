@@ -12,6 +12,9 @@ class SeriesTableSeeder extends Seeder
      */
     public function run(): void
     {
+        $rootPath = config('filesystems.disks.videos_local.root');
+        \File::deleteDirectory($rootPath, true);
+        \File::
 
         /** @var Collection $series */
         $series = factory(\CodeFlix\Models\Serie::class, 5)->create();
@@ -20,7 +23,7 @@ class SeriesTableSeeder extends Seeder
         $repository = app(\CodeFlix\Repositories\SerieRepository::class);
 
         /** @var \Illuminate\Support\Collection $collectionThumbs */
-        $collectionThumbs = $this->getThumbs();
+        $collectionThumbs = $this->getThumb();
 
         $series->each(function ($serie) use ($repository, $collectionThumbs){
             $repository->uploadThumb($serie->id, $collectionThumbs->random());
@@ -30,12 +33,12 @@ class SeriesTableSeeder extends Seeder
     /**
      * @return \Illuminate\Support\Collection
      */
-    protected function getThumbs(): \Illuminate\Support\Collection
+    protected function getThumb(): \Illuminate\Support\Collection
     {
         return new \Illuminate\Support\Collection([
             new \Illuminate\Http\UploadedFile(
-                storage_path('app/files/faker/thumbs/thumb.jpg'),
-                'thumb.jpg'
+                storage_path('app/files/faker/thumbs/thumb.png'),
+                'thumb.png'
             )
         ]);
     }

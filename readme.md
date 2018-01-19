@@ -2,7 +2,7 @@
 	<img src="https://laravel.com/assets/img/components/logo-laravel.svg">
 </p>
 
-# Notes about standards used on this application
+# Notes about patterns used on this project
 
 ## Authentication
 - client: app\Http\Controllers\Auth
@@ -128,11 +128,19 @@
     - In _VideoRelationsController_: implement create and store actions
     - In _web.php_ routes: add videos relations routes
 - php artisan make:form "Forms\VideoRelationForm"
-- mkdir -p app/Media
+- handling thumb/image upload
+    - mkdir -p app/Media
     - create trait _MediaStorages.php_
     - create trait _SeriePaths.php_
     - create trait _ThumbUploads.php_
-- refactor _SerieTableSeeder.php_ to upload thumb and update the model
+    - refactor _SerieTableSeeder.php_ to upload thumb and update the model
+- handling thumb/image editing,resizing, etc
+    - composer require folklore/image:0.3.20
+    - apt update && apt install php-gmagick
+    - add Facade 'ThumbImage' => \Folklore\Image\Facades\Image::class
+    - add Provider Folklore\Image\ImageServiceProvider::class
+    - php artisan vendor:publish --provider="Folklore\Image\ImageServiceProvider"
+
 
 
 

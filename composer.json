@@ -6,6 +6,7 @@
     "type": "project",
     "require": {
         "php": ">=7.1",
+        "folklore/image": "0.3.20",
         "jrean/laravel-user-verification": "4.1.2",
         "kris/laravel-form-builder": "1.11",
         "laravel/framework": "5.4.*",
