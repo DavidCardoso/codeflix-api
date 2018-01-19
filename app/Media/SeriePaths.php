@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 18/01/18
- * Time: 18:43
- */
 
 namespace CodeFlix\Media;
 
 
 trait SeriePaths
 {
-    use VideoStorages;
+    use MediaStorages;
 
     /**
      * @return string

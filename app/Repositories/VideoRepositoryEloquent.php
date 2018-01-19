@@ -36,7 +36,7 @@ class VideoRepositoryEloquent extends BaseRepository implements VideoRepository
      *
      * @return string
      */
-    public function model()
+    public function model(): string
     {
         return Video::class;
     }

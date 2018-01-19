@@ -1,17 +1,11 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: david
- * Date: 18/01/18
- * Time: 18:39
- */
 
 namespace CodeFlix\Media;
 
 
 use Illuminate\Filesystem\FilesystemAdapter;
 
-trait VideoStorages
+trait MediaStorages
 {
     /**
      * @return \Illuminate\Filesystem\FilesystemAdapter
