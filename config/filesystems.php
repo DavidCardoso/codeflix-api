@@ -64,7 +64,7 @@ return [
         ],
 
         'videos_local' => [
-            'drive' => 'local',
+            'driver' => 'local',
             'root' => storage_path('app/videos_test')
         ]
 

@@ -129,9 +129,10 @@
     - In _web.php_ routes: add videos relations routes
 - php artisan make:form "Forms\VideoRelationForm"
 - mkdir -p app/Media
-    - create trait _VideoStorages.php_
+    - create trait _MediaStorages.php_
     - create trait _SeriePaths.php_
     - create trait _ThumbUploads.php_
+- refactor _SerieTableSeeder.php_ to upload thumb and update the model
 
 
 

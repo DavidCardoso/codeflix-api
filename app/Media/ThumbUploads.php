@@ -2,7 +2,7 @@
 
 namespace CodeFlix\Media;
 
-
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Filesystem\FilesystemAdapter;
 use Illuminate\Http\UploadedFile;
 
@@ -11,9 +11,9 @@ trait ThumbUploads
     /**
      * @param $id
      * @param UploadedFile $file
-     * @return \Illuminate\Database\Eloquent\Model;
+     * @return Model;
      */
-    public function uploadThumb($id, UploadedFile $file)
+    public function uploadThumb($id, UploadedFile $file): Model
     {
         $model = $this->find($id);
         $name = $this->upload($model, $file);
@@ -26,7 +26,7 @@ trait ThumbUploads
     }
 
     /**
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param Model $model
      * @param UploadedFile $file
      * @return string|false
      */
