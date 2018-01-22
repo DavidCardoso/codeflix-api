@@ -16,6 +16,10 @@ class SerieForm extends Form
             ->add('description', 'textarea',[
                 'label' => 'Descrição',
                 'rules' => 'required|min:5|max:255'
+            ])
+            ->add('thumb_file', 'file',[
+                'label' => 'Thumbnail',
+                'rules' => 'required|image|max:1024'
             ]);
     }
 }

@@ -14,7 +14,6 @@ class SeriesTableSeeder extends Seeder
     {
         $rootPath = config('filesystems.disks.videos_local.root');
         \File::deleteDirectory($rootPath, true);
-        \File::
 
         /** @var Collection $series */
         $series = factory(\CodeFlix\Models\Serie::class, 5)->create();

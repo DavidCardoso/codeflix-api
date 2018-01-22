@@ -50,8 +50,8 @@
 
 @push('styles')
     <style type="text/css">
-        .media-body{
-            width: auto;
+        table > thead > tr > th:nth-child(2){
+            width: 70%;
         }
     </style>
 @endpush

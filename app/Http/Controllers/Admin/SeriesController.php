@@ -6,8 +6,10 @@ use CodeFlix\Forms\SerieForm;
 use CodeFlix\Models\Serie;
 use CodeFlix\Repositories\SerieRepository;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use CodeFlix\Http\Controllers\Controller;
+use Illuminate\View\View;
 use Kris\LaravelFormBuilder\Form;
 
 class SeriesController extends Controller
@@ -28,9 +30,9 @@ class SeriesController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function index()
+    public function index(): View
     {
         $series = $this->repository->paginate();
         return view('admin.series.index', compact('series'));
@@ -39,9 +41,9 @@ class SeriesController extends Controller
     /**
      * Show the form for creating a new resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function create()
+    public function create(): View
     {
         /** @var Form $form */
         $form = \FormBuilder::create(SerieForm::class, [
@@ -55,10 +57,10 @@ class SeriesController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @return RedirectResponse
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
         /** @var Form $form */
         $form = \FormBuilder::create(SerieForm::class);
@@ -73,12 +75,12 @@ class SeriesController extends Controller
 
         // creating new register
         $data = $form->getFieldValues();
-        $data['thumb'] = 'thumb.png';
+        $data['thumb'] = env('IMAGE_NO_THUMB');
         Model::unguard();
         $this->repository->create($data);
 
         // returning message using Session
-        \Session::flash('success', 'Série <b>criada</b> com sucesso!');
+        $request->session()->flash('success', 'Série <b>criada</b> com sucesso!');
 
         return redirect()->route('admin.series.index');
     }
@@ -87,9 +89,9 @@ class SeriesController extends Controller
      * Display the specified resource.
      *
      * @param  \CodeFlix\Models\Serie  $series
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function show(Serie $series)
+    public function show(Serie $series): View
     {
         return view('admin.series.show', compact('series'));
     }
@@ -98,9 +100,9 @@ class SeriesController extends Controller
      * Show the form for editing the specified resource.
      *
      * @param  \CodeFlix\Models\Serie  $series
-     * @return \Illuminate\Http\Response
+     * @return View
      */
-    public function edit(Serie $series)
+    public function edit(Serie $series): View
     {
         /** @var Form $form */
         $form = \FormBuilder::create(SerieForm::class, [
@@ -115,11 +117,11 @@ class SeriesController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  integer  $id
-     * @return \Illuminate\Http\Response
+     * @param  \Illuminate\Http\Request $request
+     * @param  integer $id
+     * @return RedirectResponse
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $id): RedirectResponse
     {
         /** @var Form $form */
         $form = \FormBuilder::create(SerieForm::class);
@@ -147,9 +149,9 @@ class SeriesController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  integer  $id
-     * @return \Illuminate\Http\Response
+     * @return RedirectResponse
      */
-    public function destroy($id)
+    public function destroy($id): RedirectResponse
     {
         $this->repository->delete($id);
 
@@ -157,5 +159,23 @@ class SeriesController extends Controller
         \Session::flash('success', 'Série <b>excluída</b> com sucesso!');
 
         return redirect()->route('admin.series.index');
+    }
+
+    /**
+     * @param Serie $serie
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function thumbAsset(Serie $serie): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        return response()->download($serie->thumb_path);
+    }
+
+    /**
+     * @param Serie $serie
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function thumbSmallAsset(Serie $serie): \Symfony\Component\HttpFoundation\BinaryFileResponse
+    {
+        return response()->download($serie->thumb_small_path);
     }
 }

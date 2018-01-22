@@ -19,10 +19,18 @@
         </div>
 
         <div class="row">
-            {{-- Redering table with Bootstrapper --}}
+            {{-- Rendering table with Bootstrapper --}}
             {!!
                 Table::withContents($series->items())
                     ->striped()
+                    ->callback('Descrição', function ($field, $series){
+                        return MediaObject::withContents([
+                            'image' => $series->thumb_small_asset,
+                            'link' => '#',
+                            'heading' => $series->title,
+                            'body' => $series->description
+                        ]);
+                    })
                     ->callback('Opções', function($field, $series){
                         $linkEdit = route('admin.series.edit', ['series' => $series->id]);
                         $linkShow = route('admin.series.show', ['series' => $series->id]);
@@ -42,8 +50,8 @@
 
 @push('styles')
     <style type="text/css">
-        table > thead > tr > th:nth-child(3){
-            width: 50%;
+        table > thead > tr > th:nth-child(2){
+            width: 70%;
         }
     </style>
 @endpush
