@@ -8,19 +8,19 @@ use Illuminate\Filesystem\FilesystemAdapter;
 trait MediaStorages
 {
     /**
-     * @return \Illuminate\Filesystem\FilesystemAdapter
-     */
-    public function getStorage(): FilesystemAdapter
-    {
-        return \Storage::disk($this->getDiskDriver());
-    }
-
-    /**
      * @return mixed
      */
     protected function getDiskDriver()
     {
         return config('filesystems.default');
+    }
+
+    /**
+     * @return \Illuminate\Filesystem\FilesystemAdapter
+     */
+    public function getStorage(): FilesystemAdapter
+    {
+        return \Storage::disk($this->getDiskDriver());
     }
 
     /**
