@@ -128,18 +128,21 @@
     - In _VideoRelationsController_: implement create and store actions
     - In _web.php_ routes: add videos relations routes
 - php artisan make:form "Forms\VideoRelationForm"
-- handling thumb/image upload
+- handling thumb/image upload/download
     - mkdir -p app/Media
     - create trait _MediaStorages.php_
     - create trait _SeriePaths.php_
     - create trait _ThumbUploads.php_
     - refactor _SerieTableSeeder.php_ to upload thumb and update the model
-- handling thumb/image editing,resizing, etc
-    - composer require folklore/image:0.3.20
-    - apt update && apt install php-gmagick
-    - add Facade 'ThumbImage' => \Folklore\Image\Facades\Image::class
-    - add Provider Folklore\Image\ImageServiceProvider::class
-    - php artisan vendor:publish --provider="Folklore\Image\ImageServiceProvider"
+    - requirements
+        - composer require folklore/image:0.3.20
+        - apt update && apt install php-gmagick # use gd or imagick alternatively
+        - add Facade 'Image' => \Folklore\Image\Facades\Image::class
+        - add Provider Folklore\Image\ImageServiceProvider::class
+        - php artisan vendor:publish --provider="Folklore\Image\ImageServiceProvider"
+    - refactor _Serie.php_, _SeriesController.php_, _SeriePaths.php_, _SerieRepositoryEloquent.php_
+    - refactor _web.php_
+    - refactor _SerieForm.php_, _admin/series/index.blade.php_
 
 
 

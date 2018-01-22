@@ -39,3 +39,11 @@
 
     </div>
 @endsection
+
+@push('styles')
+    <style type="text/css">
+        table > thead > tr > th:nth-child(2){
+            width: 70%;
+        }
+    </style>
+@endpush
