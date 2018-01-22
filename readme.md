@@ -34,7 +34,8 @@
 - php artisan make:controller "Admin\UsersController" --resource --model="CodeFlix\Models\User"
 - php artisan make:form "Forms\UserForm" --fields="name:text, email:email"
 
-## Design Pattern: Repository (layer between Model and the Data Source)
+## Design Pattern:
+- Repositories are services from access layer and integration  with the databases entities
 - prettus/l5-repository:2.6.27 + service provider
 - php artisan vendor:publish --provider="Prettus\Repository\Providers\RepositoryServiceProvider"
 
