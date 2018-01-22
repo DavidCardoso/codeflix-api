@@ -143,7 +143,7 @@
     - refactor _Serie.php_, _SeriesController.php_, _SeriePaths.php_, _SerieRepositoryEloquent.php_
     - refactor _web.php_
     - refactor _SerieForm.php_, _admin/series/index.blade.php_
-
+    - refactor _ThumbUploads.php_
 
 
 

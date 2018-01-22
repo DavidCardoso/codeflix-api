@@ -48,7 +48,7 @@ class SeriesController extends Controller
         /** @var Form $form */
         $form = \FormBuilder::create(SerieForm::class, [
             'url' => route('admin.series.store'),
-            'method' => 'POST',
+            'method' => 'POST'
         ]);
 
         return view('admin.series.create', compact('form'));
@@ -108,7 +108,8 @@ class SeriesController extends Controller
         $form = \FormBuilder::create(SerieForm::class, [
             'url' => route('admin.series.update', ['series' => $series->id]),
             'method' => 'PUT',
-            'model' => $series
+            'model' => $series,
+            'data' => ['id' => $series->id]
         ]);
 
         return view('admin.series.edit', compact('form'));
@@ -124,7 +125,9 @@ class SeriesController extends Controller
     public function update(Request $request, $id): RedirectResponse
     {
         /** @var Form $form */
-        $form = \FormBuilder::create(SerieForm::class);
+        $form = \FormBuilder::create(SerieForm::class,[
+            'data' => ['id' => $id]
+        ]);
 
         // validating request
         if(!$form->isValid()) {

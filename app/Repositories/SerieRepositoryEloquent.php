@@ -7,7 +7,6 @@ use Prettus\Repository\Eloquent\BaseRepository;
 use Prettus\Repository\Criteria\RequestCriteria;
 use CodeFlix\Repositories\SerieRepository;
 use CodeFlix\Models\Serie;
-use CodeFlix\Validators\SerieValidator;
 
 /**
  * Class SerieRepositoryEloquent
@@ -20,13 +19,27 @@ class SerieRepositoryEloquent extends BaseRepository implements SerieRepository
     /**
      * @param array $attributes
      * @return mixed
-     * @throws RepositoryException
-     * @throws ValidatorException
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
      */
     public function create(array $attributes)
     {
         $model = parent::create(array_except($attributes, 'thumb_file'));
         $this->uploadThumb($model->id, $attributes['thumb_file']);
+        return $model;
+    }
+
+    /**
+     * @param array $attributes
+     * @param $id
+     * @return mixed
+     * @throws \Prettus\Validator\Exceptions\ValidatorException
+     */
+    public function update(array $attributes, $id)
+    {
+        $model = parent::update(array_except($attributes, 'thumb_file'), $id);
+        if ($attributes['thumb_file']) {
+            $this->uploadThumb($model->id, $attributes['thumb_file']);
+        }
         return $model;
     }
 

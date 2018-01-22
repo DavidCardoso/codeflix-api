@@ -21,6 +21,7 @@ trait ThumbUploads
         /** @var string|false $name */
         $name = $this->upload($model, $file);
         if ($name) {
+            $this->deleteThumbsOld($model);
             $model->thumb = $name;
             $this->makeThumbSmall($model);
             $model->save();
@@ -58,5 +59,20 @@ trait ThumbUploads
         $format = \Image::format($thumbFile);
         $thumbnailSmall = \Image::open($thumbFile)->thumbnail(new Box(64,64));
         $storage->put($model->thumb_small_relative, $thumbnailSmall->get($format));
+    }
+
+    /**
+     * @param Model $model
+     */
+    public function deleteThumbsOld($model): void
+    {
+        /** @var FilesystemAdapter $storage */
+        $storage = $model->getStorage();
+        if ($storage->exists($model->thumb_relative)) {
+            $storage->delete([$model->thumb_relative]);
+        }
+        if ($storage->exists($model->thumb_small_relative)) {
+            $storage->delete([$model->thumb_small_relative]);
+        }
     }
 }
